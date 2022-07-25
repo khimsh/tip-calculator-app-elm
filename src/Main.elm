@@ -25,13 +25,20 @@ selectTip =
     div [ class "app-select-tip" ]
         [ h2 [ class "label" ] [ text "Select Tip %" ]
         , div []
-            [ button [] [ text "5%" ]
-            , button [] [ text "10%" ]
-            , button [] [ text "15%" ]
-            , button [] [ text "25%" ]
-            , button [] [ text "50%" ]
+            [ radioButton "5%" "5" "five"
+            , radioButton "10%" "10" "ten"
+            , radioButton "15%" "15" "fifteen"
+            , radioButton "25%" "25" "twentyfive"
+            , radioButton "50%" "50" "fifty"
             , input [ type_ "number", placeholder "Custom" ] []
             ]
+        ]
+
+
+radioButton labelText optionValue optionId =
+    div []
+        [ input [ type_ "radio", id optionId, value optionValue, name "tipPercent" ] []
+        , label [ for optionId ] [ text labelText ]
         ]
 
 
@@ -78,7 +85,7 @@ result =
             [ calculatedTip
             , calculatedTotal
             ]
-        , button [ class "btn-reset" ] [ text "reset" ]
+        , button [ class "btn-reset", type_ "reset" ] [ text "reset" ]
         ]
 
 
@@ -86,7 +93,9 @@ main =
     div [ class "app-container" ]
         [ headerComponent
         , div [ class "app" ]
-            [ calculator
-            , result
+            [ Html.form []
+                [ calculator
+                , result
+                ]
             ]
         ]

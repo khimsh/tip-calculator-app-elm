@@ -14,3 +14,9 @@ elm make src/Main.elm --output elm-script.js
 cd assets
 sass scss:css
 ```
+
+### Elm Format
+
+```shell
+npm install -g elm-format
+```
